@@ -24,18 +24,18 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-controller="News" asp-route-id="@item.NewsID">@Html.DisplayFor(modelitem => item.ContentDetail.Title)</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.NewsDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.NewsType)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-controller="News" asp-route-id="@item.NewsID">@Html.DisplayFor(modelitem => item.ContentDetail.Title)</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.NewsDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.NewsType)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

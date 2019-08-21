@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using InfotechVision.Models.Extensions;
 
 namespace InfotechVision.Models.Repository
 {
@@ -63,13 +65,13 @@ namespace InfotechVision.Models.Repository
 
         
 
-        public string FileUpload(IFormFile formFile, string uploadFolder, string Type)
+        public string FileUpload(IFormFile formFile, string uploadFolder, string type, string title)
         {
             string fileName = string.Empty;
             if (formFile != null)
             {
-                string Guid = DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute;
-                fileName = Guid + Type + "_" + formFile.FileName;
+                string Guid = Regex.Replace(DateTime.Now.ToString(), @"[^0-9a-zA-Z]+", "");
+                fileName = Guid + "_" + type + "_" + Regex.Replace(title.ToTitleCase(), @"[^0-9a-zA-Z]+", "") + Path.GetExtension(formFile.FileName);
                 string filePath = Path.Combine(uploadFolder, fileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
@@ -78,6 +80,14 @@ namespace InfotechVision.Models.Repository
             }
             return fileName;
         }
-        
+
+        public void RemoveFileByName(string filePath)
+        {
+            if(File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+        }
+
     }
 }

@@ -344,6 +344,7 @@
     <Folder Include="wwwroot\uploads\companies\images\" />
     <Folder Include="wwwroot\uploads\events\images\" />
     <Folder Include="wwwroot\uploads\news\images\" />
+    <Folder Include="wwwroot\uploads\news\NewFolder\" />
     <Folder Include="wwwroot\uploads\resources\images\" />
     <Folder Include="wwwroot\uploads\resources\docs\" />
   </ItemGroup>

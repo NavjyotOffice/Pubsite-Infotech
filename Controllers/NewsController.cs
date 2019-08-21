@@ -21,11 +21,13 @@ namespace InfotechVision.Controllers
     {
         private readonly IUnitOfWork _context;
         private readonly HostingEnvironment hostingEnvironment;
+        private readonly string filePath;
 
         public NewsController(IUnitOfWork context, HostingEnvironment hostingEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             this._context = context;
             this.hostingEnvironment = hostingEnvironment;
+            this.filePath = Path.Combine(hostingEnvironment.WebRootPath, "uploads", "news", "images");
         }
 
         public IActionResult Index()
@@ -67,7 +69,7 @@ namespace InfotechVision.Controllers
         {
             if (ModelState.IsValid)
             {
-                news.ContentDetail.Image = _context.News.FileUpload(news.ContentDetail.Upload, Path.Combine(hostingEnvironment.WebRootPath, "uploads", "news", "images"), "News");
+                news.ContentDetail.Image = _context.News.FileUpload(news.ContentDetail.Upload, this.filePath, "News", news.ContentDetail.Title);
                 news.ContentDetail.CreatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 news.ContentDetail.UpdatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 news.ContentDetail.CreatedDate = DateTime.Now;
@@ -111,7 +113,8 @@ namespace InfotechVision.Controllers
                 {
                     if (news.ContentDetail.Upload != null)
                     {
-                        news.ContentDetail.Image = _context.News.FileUpload(news.ContentDetail.Upload, Path.Combine(hostingEnvironment.WebRootPath, "uploads", "news", "images"), "News");
+                        _context.ContentDetail.RemoveFileByName(Path.Combine(this.filePath, news.ContentDetail.Image));
+                        news.ContentDetail.Image = _context.News.FileUpload(news.ContentDetail.Upload, this.filePath, "News", news.ContentDetail.Title);
                     }
                     news.ContentDetail.UpdatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     news.ContentDetail.UpdatedDate = DateTime.Now;
@@ -151,6 +154,7 @@ namespace InfotechVision.Controllers
         {
             var news = _context.News.GetEntityByID(id);
             var contentDetails = _context.ContentDetail.GetEntityByID(news.ContentID);
+            _context.ContentDetail.RemoveFileByName(Path.Combine(this.filePath, news.ContentDetail.Image));
             _context.ContentDetail.Remove(contentDetails);
             _context.News.Remove(news);
             _context.Complete();

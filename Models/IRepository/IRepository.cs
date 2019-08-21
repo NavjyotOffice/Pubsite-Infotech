@@ -23,6 +23,7 @@ namespace InfotechVision.Models.IRepository
         void Remove(TEntity entity);
 
 
-        string FileUpload(IFormFile formFile, string uploadFolder, string Type);
+        string FileUpload(IFormFile formFile, string uploadFolder, string type, string title);
+        void RemoveFileByName(string filePath);
     }
 }

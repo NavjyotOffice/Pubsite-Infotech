@@ -22,5 +22,17 @@ namespace InfotechVision.Data
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<EmailCampaignLandingPageTrack> EmailCampaignLandingPageTracks { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<News>()
+                .HasOne<ContentDetail>(c => c.ContentDetail)
+                .WithMany(n => n.News)
+                .HasForeignKey(c => c.ContentID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+        }
     }
 }
