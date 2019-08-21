@@ -1,0 +1,183 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Admin</title>
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="~/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/libs/css/style.css">
+    <link rel="stylesheet" href="~/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <style>
+        .pagination > li > a, .pagination > li > span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #337ab7;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+
+        a.navbar-brand img {
+            height: 41px;
+            margin-left: 41px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="../../News/Index">
+                    <img alt="LOGO" src="~/assets/images/logo-01.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item" style="margin-right:20px">
+                            @User.Identity.Name
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">@User.Identity.Name</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>   
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenuNews" aria-controls="submenu-5"><i class="fas fa-fw fa-newspaper"></i>News</a>
+                                <div id="submenuNews" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/News/Create">Add News</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/News/Index">All News</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/News/Index?Type=Featured">Featured News</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/News/Index?Type=Trending">Trending News</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenuEvents" aria-controls="submenu-5"><i class="fas fa-fw fa-calendar"></i>Events</a>
+                                <div id="submenuEvents" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/EventsList/Create">Add Events</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/EventsList/Index">All Events</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/EventsList/Index?Type=Conference">Conference</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/EventsList/Index?Type=OnDemand">On-Demand Webinars</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/EventsList/Index?Type=Live">Live Webinars</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenuResources" aria-controls="submenu-5"><i class="fas fa-fw fa-file-pdf"></i>Resources</a>
+                                <div id="submenuResources" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Create">Add Resources</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Index">All Resources</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Index?Type=Whitepaper">Whitepapers</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Index?Type=Video">Videos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Index?Type=Infographics">Infographics</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/ResourcesList/Index?Type=blog">Blogs</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenuCompany" aria-controls="submenu-5"><i class="fas fa-fw fa-briefcase"></i>Company</a>
+                                <div id="submenuCompany" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/CompaniesList/Create">Add Company</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/CompaniesList/Index">All Companies</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenuLandingPage" aria-controls="submenu-6"><i class="fas fa-fw fa-book"></i>Landing Page</a>
+                                <div id="submenuLandingPage" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/CompanyList/Create">Add Landing Page</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/CompanyList/Index">Search Landing Page</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <form class="navbar-right" id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()"><i class="fas fa-fw fa-sign-out-alt"></i>Logout (@User.Identity.Name)</a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="~/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/assets/libs/js/main-js.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

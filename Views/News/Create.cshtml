@@ -1,0 +1,72 @@
+﻿@model InfotechVision.Models.News
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>News</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" asp-controller="News" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NewsType" class="control-label"></label>
+                <select asp-for="NewsType" asp-items="Html.GetEnumSelectList<NewsType>()" class="form-control">
+                    <option selected="selected" value="">--Please select--</option>
+                </select>
+                <span asp-validation-for="NewsType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.Title" class="control-label"></label>
+                <input asp-for="ContentDetail.Title" class="form-control" />
+                <span asp-validation-for="ContentDetail.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.Description" class="control-label"></label>
+                <textarea asp-for="ContentDetail.Description" rows="5" class="form-control"></textarea>
+                <span asp-validation-for="ContentDetail.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ContentDetail.URL" class="control-label"></label>
+                <input asp-for="ContentDetail.URL" class="form-control" />
+                <span asp-validation-for="ContentDetail.URL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.Author" class="control-label"></label>
+                <input asp-for="ContentDetail.Author" class="form-control" />
+                <span asp-validation-for="ContentDetail.Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.Keywords" class="control-label"></label>
+                <input asp-for="ContentDetail.Keywords" class="form-control" />
+                <span asp-validation-for="ContentDetail.Keywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.Upload" class="control-label"></label>
+                <input asp-for="ContentDetail.Upload" class="form-control" required />
+                <span asp-validation-for="ContentDetail.Upload" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContentDetail.CompanyName" class="control-label"></label>
+                <input asp-for="ContentDetail.CompanyName" class="form-control" />
+                <span asp-validation-for="ContentDetail.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewsDate" class="control-label"></label>
+                <input asp-for="NewsDate" class="form-control" />
+                <span asp-validation-for="NewsDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
