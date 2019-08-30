@@ -22,6 +22,7 @@ namespace InfotechVision.Controllers
         private readonly IUnitOfWork _context;
         private readonly HostingEnvironment hostingEnvironment;
         private readonly string filePath;
+        private bool IsSuperAdmin, IsAdmin;
 
         public NewsController(IUnitOfWork context, HostingEnvironment hostingEnvironment, IHttpContextAccessor httpContextAccessor)
         {
@@ -32,7 +33,8 @@ namespace InfotechVision.Controllers
 
         public IActionResult Index()
         {
-            bool IsSuperAdmin = User.IsInRole("SuperAdmin"), IsAdmin = User.IsInRole("Admin");
+            this.IsSuperAdmin = User.IsInRole("SuperAdmin");
+            this.IsAdmin = User.IsInRole("Admin");
 
             if (User.Identity.IsAuthenticated && IsSuperAdmin || IsAdmin)
                 return View(_context.News.GetNewsForAdmin());
@@ -164,7 +166,9 @@ namespace InfotechVision.Controllers
         [NonAction]
         public News GetNews(int? Id)
         {
-            if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+            this.IsSuperAdmin = User.IsInRole("SuperAdmin");
+            this.IsAdmin = User.IsInRole("Admin");
+            if (IsSuperAdmin || IsAdmin)
             {
                 return _context.News.GetNewsByIDForAdmin(Id);
             }
