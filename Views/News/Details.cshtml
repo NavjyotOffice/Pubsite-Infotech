@@ -4,71 +4,93 @@
     ViewData["Title"] = "Details";
     string Path = "~/uploads/news/images/" + Model.ContentDetail.Image;
 }
-<h1>Details</h1>
 <style>
-    .row-bordered:after {
-        content: "";
-        display: block;
-        border-bottom: 1px solid #ccc;
-        margin: 0 15px;
+    .details .row{
+        margin-bottom: 7px;
+        margin-top: 7px;
+    }
+    .details .row .col-md-2{
+        font-weight:bold;
+    }
+    .details a{
+        text-decoration:underline;
     }
 </style>
-<div>
-    <h4>News</h4>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.NewsType)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.NewsType)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.Title)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Title)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.Description)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Description)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.URL)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.URL)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.Author)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Author)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.Keywords)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Keywords)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>Banner Image</h4></div>
-        <div class="col-md-10"><img asp-append-version="true" src="@Path" class="col-md-10" alt="Image" /></div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.CompanyName)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CompanyName)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.NewsDate)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.NewsDate)</div>
-    </div>
-    <div class="row row-bordered">
-        <div class="col-md-2"><h4>@Html.DisplayNameFor(model => model.ContentDetail.HideOnSite)</h4></div>
-        <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.HideOnSite)</div>
-    </div>
-    @if (User.IsInRole("SuperAdmin"))
-    {
-        <div class="row row-bordered">
-            <div class="col-md-2"><h4>Created By</h4></div>
-            <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CreatedBy.Email) (@Html.DisplayFor(model => model.ContentDetail.CreatedDate))</div>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>News Details</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="details">
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.NewsType)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.NewsType)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Title)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Title)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Description)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Description)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.URL)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.URL)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Author)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Author)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Keywords)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Keywords)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">Banner Image</div>
+                                <div class="col-md-10"><img asp-append-version="true" src="@Path" style="width:50%" alt="Image" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.CompanyName)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CompanyName)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.NewsDate)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.NewsDate)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.HideOnSite)</div>
+                                <div class="col-md-10"><input type="checkbox" asp-for="ContentDetail.HideOnSite" disabled="disabled" class="js-switch" /></div>
+                            </div>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                                <div class="row">
+                                    <div class="col-md-2">Created By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CreatedBy.Email) (@Html.DisplayFor(model => model.ContentDetail.CreatedDate))</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Updated By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.UpdatedBy.Email) (@Html.DisplayFor(model => model.ContentDetail.UpdatedDate))</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="details">
+                            <a asp-action="Edit" asp-route-id="@Model.NewsID" asp-controller="News">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@Model.NewsID" asp-controller="News">Delete</a> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row row-bordered">
-            <div class="col-md-2"><h4>Updated By</h4></div>
-            <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.UpdatedBy.Email) (@Html.DisplayFor(model=>model.ContentDetail.UpdatedDate))</div>
-        </div>
-    }
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.NewsID" asp-controller="News">Edit</a> |
-    <a asp-action="Delete" asp-route-id="@Model.NewsID" asp-controller="News">Delete</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<!-- /page content -->
+
+

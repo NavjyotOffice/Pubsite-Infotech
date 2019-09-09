@@ -33,8 +33,8 @@ namespace InfotechVision.Controllers
 
         public IActionResult Index()
         {
-            this.IsSuperAdmin = User.IsInRole("SuperAdmin");
-            this.IsAdmin = User.IsInRole("Admin");
+            this.IsSuperAdmin = User.IsInRole(RolesOfUser.SuperAdmin.ToString());
+            this.IsAdmin = User.IsInRole(RolesOfUser.Admin.ToString());
 
             if (User.Identity.IsAuthenticated && IsSuperAdmin || IsAdmin)
                 return View(_context.News.GetNewsForAdmin());
@@ -115,7 +115,10 @@ namespace InfotechVision.Controllers
                 {
                     if (news.ContentDetail.Upload != null)
                     {
-                        _context.ContentDetail.RemoveFileByName(Path.Combine(this.filePath, news.ContentDetail.Image));
+                        if (!String.IsNullOrEmpty(news.ContentDetail.Image))
+                        {
+                            _context.ContentDetail.RemoveFileByName(Path.Combine(this.filePath, news.ContentDetail.Image));
+                        }
                         news.ContentDetail.Image = _context.News.FileUpload(news.ContentDetail.Upload, this.filePath, "News", news.ContentDetail.Title);
                     }
                     news.ContentDetail.UpdatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;

@@ -4,83 +4,123 @@
     ViewData["Title"] = "Edit";
     string Path = "~/uploads/news/images/" + Model.ContentDetail.Image;
 }
-
-<h1>Edit</h1>
-
-<h4>News</h4>
-<hr />
-<div class="row">
-    <div class="col-md-12">
-        <form enctype="multipart/form-data" asp-action="Edit" asp-controller="News">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="NewsID" />
-            <input type="hidden" asp-for="ContentDetail.Image" />
-            <input type="hidden" asp-for="ContentDetail.ContentID" />
-            <input type="hidden" asp-for="ContentDetail.UpdatedById" />
-            <input type="hidden" asp-for="ContentDetail.CreatedById" />
-            <input type="hidden" asp-for="ContentDetail.CreatedDate" />
-            <input type="hidden" asp-for="ContentDetail.UpdatedDate" />
-            <div class="form-group">
-                <label asp-for="NewsType" class="control-label"></label>
-                <select asp-for="NewsType" asp-items="Html.GetEnumSelectList<NewsType>()" class="form-control"></select>
-                <span asp-validation-for="NewsType" class="text-danger"></span>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form asp-action="Edit" asp-controller="News" enctype="multipart/form-data" method="post" class="form-horizontal form-label-left" novalidate>
+                            <div asp-validation-summary="All">
+                                <span>Please correct the following errors</span>
+                            </div>
+                            <input type="hidden" asp-for="NewsID" />
+                            <input type="hidden" asp-for="ContentDetail.Image" />
+                            <input type="hidden" asp-for="ContentDetail.ContentID" />
+                            <input type="hidden" asp-for="ContentDetail.UpdatedById" />
+                            <input type="hidden" asp-for="ContentDetail.CreatedById" />
+                            <input type="hidden" asp-for="ContentDetail.CreatedDate" />
+                            <input type="hidden" asp-for="ContentDetail.UpdatedDate" />
+                            <span class="section">Add News</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="NewsType">News Type<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select asp-for="N_Type" asp-items="Html.GetEnumSelectList<NewsType>()" class="form-control" required="required">
+                                        <option selected="selected" value="">--Please select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Title">
+                                    Title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.Title" placeholder="Title" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Description">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea rows="5" asp-for="ContentDetail.Description" placeholder="Description" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.URL">
+                                    URL Link <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="url" asp-for="ContentDetail.URL" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Author">
+                                    Author <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.Author" required="required" placeholder="name(s) e.g Jon Doe" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Keywords">
+                                    Keywords <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.Keywords" required="required" placeholder="Keywords For SEO" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Upload">
+                                    Banner Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" asp-for="ContentDetail.Upload" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.URL">
+                                    Current Banner Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <img asp-append-version="true" src="@Path" class="col-md-7 col-xs-12" alt="Image" />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.CompanyName">
+                                    Company Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.CompanyName" required="required" placeholder="Keywords For SEO" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="NewsDate">
+                                    News Date (@Model.NewsDate?.ToString("MM/dd/yyyy"))<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" asp-for="NewsDate" value="@Model.NewsDate" class="form-control has-feedback-left" id="single_cal4" required="required" />
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.HideOnSite">
+                                    Hide On Site <span class="required">&nbsp;</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="checkbox" asp-for="ContentDetail.HideOnSite" class="js-switch form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.Title" class="control-label"></label>
-                <input asp-for="ContentDetail.Title" class="form-control" />
-                <span asp-validation-for="ContentDetail.Title" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.Description" class="control-label"></label>
-                <textarea asp-for="ContentDetail.Description" rows="5" class="form-control"></textarea>
-                <span asp-validation-for="ContentDetail.Description" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="ContentDetail.URL" class="control-label"></label>
-                <input asp-for="ContentDetail.URL" class="form-control" />
-                <span asp-validation-for="ContentDetail.URL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.Author" class="control-label"></label>
-                <input asp-for="ContentDetail.Author" class="form-control" />
-                <span asp-validation-for="ContentDetail.Author" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.Keywords" class="control-label"></label>
-                <input asp-for="ContentDetail.Keywords" class="form-control" />
-                <span asp-validation-for="ContentDetail.Keywords" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.Upload" class="control-label"></label>
-                <input asp-for="ContentDetail.Upload" class="form-control" />
-                <span asp-validation-for="ContentDetail.Upload" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Current Banner Image</label>
-                <img asp-append-version="true" src="@Path" class="col-md-8" alt="Image" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ContentDetail.CompanyName" class="control-label"></label>
-                <input asp-for="ContentDetail.CompanyName" class="form-control" />
-                <span asp-validation-for="ContentDetail.CompanyName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NewsDate" class="control-label"></label>
-                <input asp-for="NewsDate" class="form-control" />
-                <span asp-validation-for="NewsDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input asp-for="ContentDetail.HideOnSite" />
-                <label asp-for="ContentDetail.HideOnSite" class="control-label"></label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>

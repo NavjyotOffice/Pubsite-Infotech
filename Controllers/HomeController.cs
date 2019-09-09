@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using InfotechVision.Models;
 using Microsoft.AspNetCore.Authorization;
+using InfotechVision.Models.IRepository;
+using InfotechVision.ViewModel;
 
 namespace InfotechVision.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork _context;
+        public HomeController(IUnitOfWork context)
+        {
+            this._context = context;
+        }
         public IActionResult Index()
         {
             return View();
