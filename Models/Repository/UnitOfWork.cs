@@ -12,16 +12,16 @@ namespace InfotechVision.Models.Repository
     {
         private readonly ApplicationDbContext context;
 
-
-        public INewsRepository News { get; private set; }
         public IContentDetailRepository ContentDetail { get; private set; }
-
+        public INewsRepository News { get; private set; }
+        public IEventsRepository Events { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
-            News = new NewsRepository(context);
-            ContentDetail = new ContentDetailRepository(context);
+            this.ContentDetail = new ContentDetailRepository(context);
+            this.News = new NewsRepository(context);
+            this.Events = new EventsRepository(context);
         }
 
         public int Complete()

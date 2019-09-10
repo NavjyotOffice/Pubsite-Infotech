@@ -166,6 +166,7 @@ namespace InfotechVision.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         [NonAction]
         public News GetNews(int? Id)
         {

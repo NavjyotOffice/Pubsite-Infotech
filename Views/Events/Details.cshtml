@@ -1,0 +1,114 @@
+﻿@model Event
+
+@{
+    ViewData["Title"] = "Details";
+    string Path = "~/uploads/events/images/" + Model.ContentDetail.Image;
+}
+
+<style>
+    .details .row {
+        margin-bottom: 7px;
+        margin-top: 7px;
+    }
+
+        .details .row .col-md-2 {
+            font-weight: bold;
+        }
+
+    .details a {
+        text-decoration: underline;
+    }
+</style>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Events Details</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="details">
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.EventType)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.EventType)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Title)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Title)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Description)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Description)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.URL)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.URL)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.Keywords)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.Keywords)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.CompanyName)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CompanyName)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">Banner Image</div>
+                                <div class="col-md-10"><img asp-append-version="true" src="@Path" style="width:50%" alt="Image" /></div>
+                            </div>
+                            @if (Model.EventType.ToString() == InfotechVision.Models.EventType.Conference.ToString())
+                            {
+                                <div class="row">
+                                    <div class="col-md-2">@Html.DisplayNameFor(model => model.Address.City)</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.Address.City)</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">@Html.DisplayNameFor(model => model.Address.State)</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.Address.State)</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">@Html.DisplayNameFor(model => model.Address.Country)</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.Address.Country)</div>
+                                </div>
+                            }
+                            @if (Model.EventType.ToString() == InfotechVision.Models.EventType.Conference.ToString() || Model.EventType.ToString() == InfotechVision.Models.EventType.Live.ToString())
+                            {
+                                <div class="row">
+                                    <div class="col-md-2">@Html.DisplayNameFor(model => model.StartDate)</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.StartDate)</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">@Html.DisplayNameFor(model => model.EndDate)</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.EndDate)</div>
+                                </div>
+                            }
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.ContentDetail.HideOnSite)</div>
+                                <div class="col-md-10"><input type="checkbox" asp-for="ContentDetail.HideOnSite" disabled="disabled" class="js-switch" /></div>
+                            </div>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                                <div class="row">
+                                    <div class="col-md-2">Created By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.CreatedBy.Email) (@Html.DisplayFor(model => model.ContentDetail.CreatedDate))</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Updated By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.ContentDetail.UpdatedBy.Email) (@Html.DisplayFor(model => model.ContentDetail.UpdatedDate))</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="details">
+                            <a asp-action="Edit" asp-route-id="@Model.EventID" asp-controller="Events">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@Model.EventID" asp-controller="Events">Delete</a> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

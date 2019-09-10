@@ -17,6 +17,7 @@ namespace InfotechVision.Models
         public int CompanyID { get; set; }
 
         [StringLength(1000)]
+        [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
         public string Description { get; set; }
@@ -53,6 +54,7 @@ namespace InfotechVision.Models
 
         ////Not Mapped are below
         [NotMapped]
+        [Display(Name = "Company Logo")]
         public IFormFile Upload { get; set; }
     }
 }

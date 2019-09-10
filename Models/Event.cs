@@ -27,12 +27,12 @@ namespace InfotechVision.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [Required]
+        [Display(Name ="Start Date")]
         public DateTime? StartDate { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [Required]
+        [Display(Name = "End Date")]
         public DateTime? EndDate { get; set; }
 
         public int? ContentID { get; set; }
@@ -41,6 +41,7 @@ namespace InfotechVision.Models
 
         public virtual ContentDetail ContentDetail { get; set; }
 
+        [Display(Name = "Event Type")]
         public string EventType
         {
             get
@@ -55,6 +56,7 @@ namespace InfotechVision.Models
 
         [NotMapped]
         [Required]
+        [Display(Name = "Event Type")]
         public EventType? E_Type { get; set; }
     }
 }

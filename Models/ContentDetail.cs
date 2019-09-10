@@ -27,7 +27,6 @@ namespace InfotechVision.Models
         public string Keywords { get; set; }
 
         [StringLength(1000)]
-        [Required]
         public string Author { get; set; }
 
         [StringLength(1000)]

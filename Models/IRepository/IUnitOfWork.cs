@@ -7,8 +7,9 @@ namespace InfotechVision.Models.IRepository
 {
     public interface IUnitOfWork : IDisposable
     {
-        INewsRepository News { get; }
         IContentDetailRepository ContentDetail { get; }
+        INewsRepository News { get; }
+        IEventsRepository Events { get; }
         int Complete();
     }
 }

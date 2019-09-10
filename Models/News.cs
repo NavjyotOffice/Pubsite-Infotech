@@ -38,6 +38,7 @@ namespace InfotechVision.Models
 
         [NotMapped]
         [Required]
+        [Display(Name = "News Type")]
         public NewsType? N_Type { get; set; }
     }
 

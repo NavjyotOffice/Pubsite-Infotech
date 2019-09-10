@@ -1,0 +1,43 @@
+﻿@model IEnumerable<InfotechVision.Models.Event>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>All Events</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Event Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td><a asp-action="Details" asp-controller="Events" asp-route-id="@item.EventID">@Html.DisplayFor(modelitem => item.ContentDetail.Title)</a></td>
+                                        <td>@Html.DisplayFor(modelitem => item.EventType)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->

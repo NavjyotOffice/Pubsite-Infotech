@@ -23,10 +23,14 @@ namespace InfotechVision.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [Display(Name ="Date Time")]
         public DateTime DateTime { get; set; }
 
         [NotMapped]
+        [Display(Name ="Resource File")]
         public IFormFile Upload { get; set; }
+
+        [Display(Name = "Resource Type")]
         public string ResourceType
         {
             get
@@ -40,6 +44,7 @@ namespace InfotechVision.Models
         }
 
         [NotMapped]
+        [Display(Name = "Resource Type")]
         public ResourceType R_Type { get; set; }
     }
 }

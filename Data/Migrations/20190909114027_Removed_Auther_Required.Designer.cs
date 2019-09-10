@@ -4,14 +4,16 @@ using InfotechVision.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfotechVision.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190909114027_Removed_Auther_Required")]
+    partial class Removed_Auther_Required
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,11 +233,13 @@ namespace InfotechVision.Data.Migrations
 
                     b.Property<int?>("ContentID");
 
-                    b.Property<DateTime?>("EndDate");
+                    b.Property<DateTime?>("EndDate")
+                        .IsRequired();
 
                     b.Property<string>("EventType");
 
-                    b.Property<DateTime?>("StartDate");
+                    b.Property<DateTime?>("StartDate")
+                        .IsRequired();
 
                     b.HasKey("EventID");
 

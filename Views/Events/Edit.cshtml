@@ -1,0 +1,200 @@
+﻿@model Event
+
+@{
+    ViewData["Title"] = "Edit";
+    string Path = "~/uploads/events/images/" + Model.ContentDetail.Image;
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form asp-action="Edit" asp-controller="Events" enctype="multipart/form-data" method="post" class="form-horizontal form-label-left" novalidate>
+                            <span class="section">Add Event</span>
+                            <div asp-validation-summary="All">
+                                <span>Please correct the following errors</span>
+                            </div>
+                            <input type="hidden" asp-for="EventID" />
+                            <input type="hidden" asp-for="ContentDetail.Image" />
+                            <input type="hidden" asp-for="ContentDetail.ContentID" />
+                            <input type="hidden" asp-for="ContentDetail.UpdatedById" />
+                            <input type="hidden" asp-for="ContentDetail.CreatedById" />
+                            <input type="hidden" asp-for="ContentDetail.CreatedDate" />
+                            <input type="hidden" asp-for="ContentDetail.UpdatedDate" />
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="EventType">Events Type<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select asp-for="E_Type" asp-items="Html.GetEnumSelectList<EventType>()" class="form-control" required="required">
+                                        <option selected="selected" value="">--Please select--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Title">
+                                    Title <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.Title" placeholder="Title" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Description">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea rows="5" asp-for="ContentDetail.Description" placeholder="Description" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.URL">
+                                    URL Link <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="url" asp-for="ContentDetail.URL" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Keywords">
+                                    Keywords <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.Keywords" required="required" placeholder="Keywords For SEO" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.CompanyName">
+                                    Company Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="ContentDetail.CompanyName" required="required" placeholder="Company Name" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.Upload">
+                                    Banner Image <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" asp-for="ContentDetail.Upload" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.URL">
+                                    Current Banner Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <img asp-append-version="true" src="@Path" class="col-md-7 col-xs-12" alt="Image" />
+                                </div>
+                            </div>
+                            <div id="divAddressCity" class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Address.City">
+                                    City <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="Address.City" required="required" placeholder="City" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div id="divAddressState" class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Address.State">
+                                    State <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="Address.State" required="required" placeholder="State" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div id="divAddressCountry" class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Address.Country">
+                                    Country <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="Address.Country" required="required" placeholder="Country" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div id="divStartDate" class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="StartDate">
+                                    Start Date <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="StartDate" class="form-control has-feedback-left" required="required" />
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div id="divEndDate" class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="EndDate">
+                                    End Date <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="EndDate" class="form-control has-feedback-left" required="required" />
+                                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="ContentDetail.HideOnSite">
+                                    Hide On Site <span class="required">&nbsp;</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="checkbox" asp-for="ContentDetail.HideOnSite" class="js-switch form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery -->
+<script src="~/assets/vendors/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    document.getElementById('StartDate').min = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
+    $(document).ready(function () {
+        EventTypeCheck();
+    });
+    $('#StartDate').change(function () {
+        document.getElementById('EndDate').value = "";
+        document.getElementById('EndDate').min = document.getElementById('StartDate').value;
+    });
+    $('#E_Type').change(function () {
+        EventTypeCheck();
+    });
+    function EventTypeCheck() {
+        if ($('#E_Type').find(":selected").text() == "OnDemand Webinar") {
+            $('#divStartDate').hide();
+            $("#StartDate").removeAttr("required");
+            $('#divEndDate').hide();
+            $("#EndDate").removeAttr("required");
+        }
+        else {
+            $('#divStartDate').show();
+            $("#StartDate").attr("required", "required");
+            $('#divEndDate').show();
+            $("#EndDate").attr("required", "required");
+        }
+        if ($('#E_Type').find(":selected").text() == "Conference") {
+            $('#divAddressCity').show();
+            $("#Address_City").attr("required", "required");
+            $('#divAddressState').show();
+            $("#Address_State").attr("required", "required");
+            $('#divAddressCountry').show();
+            $("#Address_Country").attr("required", "required");
+        }
+        else {
+            $('#divAddressCity').hide();
+            $("#Address_City").removeAttr("required");
+            $('#divAddressState').hide();
+            $("#Address_State").removeAttr("required");
+            $('#divAddressCountry').hide();
+            $("#Address_Country").removeAttr("required");
+        }
+    }
+</script>
+
