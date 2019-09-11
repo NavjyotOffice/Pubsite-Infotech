@@ -15,6 +15,7 @@ namespace InfotechVision.Models.Repository
         public IContentDetailRepository ContentDetail { get; private set; }
         public INewsRepository News { get; private set; }
         public IEventsRepository Events { get; private set; }
+        public IAddresssRepository Address { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -22,6 +23,7 @@ namespace InfotechVision.Models.Repository
             this.ContentDetail = new ContentDetailRepository(context);
             this.News = new NewsRepository(context);
             this.Events = new EventsRepository(context);
+            this.Address = new AddressRepository(context);
         }
 
         public int Complete()

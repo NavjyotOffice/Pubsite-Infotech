@@ -126,6 +126,50 @@ namespace InfotechVision.Controllers
             return View(events);
         }
 
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Edit(int id, Event events)
+        {
+            if (id != events.EventID)
+            {
+                return NotFound();
+            }
+            if(ModelState.IsValid)
+            {
+                try
+                {
+                    if(events.ContentDetail.Upload!=null)
+                    {
+                        if(!String.IsNullOrEmpty(events.ContentDetail.Image))
+                        {
+                            _context.ContentDetail.RemoveFileByName(Path.Combine(this.filePath, events.ContentDetail.Image));
+                        }
+                        events.ContentDetail.Image = _context.Events.FileUpload(events.ContentDetail.Upload, this.filePath, "Events", events.ContentDetail.Title);
+                    }
+                    events.ContentDetail.UpdatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    events.ContentDetail.UpdatedDate = DateTime.Now;
+                    if (events.Address!=null && events.EventType!=EventType.Conference.ToString())
+                    {
+                        _context.Address.Remove(events.Address);
+                        events.AddressID = null;
+                    }
+                    if(events.EventType==EventType.OnDemand.ToString())
+                    {
+                        events.StartDate = null;
+                        events.EndDate = null;
+                    }
+                    _context.Events.Update(events);
+                    _context.Complete();
+                }
+                catch
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(events);
+        }
+
         [NonAction]
         public Event GetEventById(int? Id)
         {

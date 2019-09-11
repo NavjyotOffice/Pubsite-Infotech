@@ -24,6 +24,11 @@
                             <input type="hidden" asp-for="ContentDetail.CreatedById" />
                             <input type="hidden" asp-for="ContentDetail.CreatedDate" />
                             <input type="hidden" asp-for="ContentDetail.UpdatedDate" />
+                            @if (Model.Address!=null)
+                            {
+                                <input type="hidden" asp-for="AddressID" />
+                                <input type="hidden" asp-for="Address.AddressID" />
+                            }
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="EventType">Events Type<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">

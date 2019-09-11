@@ -10,6 +10,7 @@ namespace InfotechVision.Models.IRepository
         IContentDetailRepository ContentDetail { get; }
         INewsRepository News { get; }
         IEventsRepository Events { get; }
+        IAddresssRepository Address { get; }
         int Complete();
     }
 }
