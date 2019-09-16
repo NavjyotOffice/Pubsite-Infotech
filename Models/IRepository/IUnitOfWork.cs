@@ -11,6 +11,8 @@ namespace InfotechVision.Models.IRepository
         INewsRepository News { get; }
         IEventsRepository Events { get; }
         IAddresssRepository Address { get; }
+
+        ICompaniesRepository companies { get; }
         int Complete();
     }
 }

@@ -148,7 +148,7 @@ namespace InfotechVision.Controllers
                     }
                     events.ContentDetail.UpdatedById = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     events.ContentDetail.UpdatedDate = DateTime.Now;
-                    if (events.Address!=null && events.EventType!=EventType.Conference.ToString())
+                    if (events.AddressID!=null && events.EventType!=EventType.Conference.ToString())
                     {
                         _context.Address.Remove(events.Address);
                         events.AddressID = null;

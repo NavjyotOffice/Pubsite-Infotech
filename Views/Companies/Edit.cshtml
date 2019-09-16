@@ -1,0 +1,85 @@
+﻿@model Company
+
+@{
+    ViewData["Title"] = "Create";
+    string Path = "~/uploads/companies/images/" + Model.LogoImage;
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <form asp-action="Edit" asp-controller="Companies" enctype="multipart/form-data" method="post" class="form-horizontal form-label-left" novalidate>
+                            <div asp-validation-summary="All">
+                                <span>Please correct the following errors</span>
+                            </div>
+                            <input type="hidden" asp-for="CompanyID" />
+                            <input type="hidden" asp-for="CreatedById" />
+                            <input type="hidden" asp-for="CreatedDate" />
+                            <input type="hidden" asp-for="UpdatedById" />
+                            <input type="hidden" asp-for="UpdatedDate" />
+                            <span class="section">Edit Company</span>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="CompanyName">
+                                    Company Name <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input asp-for="CompanyName" placeholder="Title" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="Description">
+                                    Description <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea rows="5" asp-for="Description" placeholder="Description" required="required" class="form-control col-md-7 col-xs-12"></textarea>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="WebsiteURL">
+                                    Website URL / Domain <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="url" asp-for="WebsiteURL" required="required" placeholder="www.website.com" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="LogoImage">
+                                    Logo Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" asp-for="Upload" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="LogoImage">
+                                    Current Banner Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <img asp-append-version="true" src="@Path" class="col-md-7 col-xs-12" alt="Image" />
+                                    <input asp-for="LogoImage" type="hidden" />
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" asp-for="HideOnSite">
+                                    Hide On Site <span class="required">&nbsp;</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="checkbox" asp-for="HideOnSite" class="js-switch form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

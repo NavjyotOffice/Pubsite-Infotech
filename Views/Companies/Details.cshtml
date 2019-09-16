@@ -1,0 +1,78 @@
+﻿@model Company
+
+@{
+    ViewData["Title"] = "Create";
+    string Path = "~/uploads/companies/images/" + Model.LogoImage;
+}
+
+<style>
+    .details .row {
+        margin-bottom: 7px;
+        margin-top: 7px;
+    }
+
+        .details .row .col-md-2 {
+            font-weight: bold;
+        }
+
+    .details a {
+        text-decoration: underline;
+    }
+</style>
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Company Details</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="details">
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.CompanyName)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.CompanyName)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.Description)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.Description)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.WebsiteURL)</div>
+                                <div class="col-md-10">@Html.DisplayFor(model => model.WebsiteURL)</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">Banner Image</div>
+                                <div class="col-md-10"><img asp-append-version="true" src="@Path" style="width:120px" alt="Image" /></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">@Html.DisplayNameFor(model => model.HideOnSite)</div>
+                                <div class="col-md-10"><input type="checkbox" asp-for="HideOnSite" disabled="disabled" class="js-switch" /></div>
+                            </div>
+                            @if (User.IsInRole("SuperAdmin"))
+                            {
+                                <div class="row">
+                                    <div class="col-md-2">Created By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.CreatedBy.Email) (@Html.DisplayFor(model => model.CreatedDate))</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2">Updated By</div>
+                                    <div class="col-md-10">@Html.DisplayFor(model => model.UpdatedBy.Email) (@Html.DisplayFor(model => model.UpdatedDate))</div>
+                                </div>
+                            }
+                        </div>
+                        <div class="details">
+                            <a asp-action="Edit" asp-route-id="@Model.CompanyID" asp-controller="Companies">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@Model.CompanyID" asp-controller="Companies">Delete</a> |
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page content -->
